@@ -1,0 +1,119 @@
+- generic [ref=e1]:
+  - generic [ref=e2]:
+    - banner [ref=e3]:
+      - generic [ref=e4]:
+        - button "Lens — start a new search" [ref=e5]:
+          - img [ref=e7]
+          - generic [ref=e9]: Lens
+        - button "New search" [ref=e64]:
+          - img [ref=e65]
+          - text: New search
+    - main [ref=e10]:
+      - generic [ref=e67]:
+        - img "Saved search" [ref=e68]
+        - generic [ref=e69]:
+          - paragraph [ref=e70]: From your history
+          - paragraph [ref=e71]: Re-viewing a saved search.
+        - button "New search" [ref=e72]
+      - generic [ref=e25]:
+        - generic [ref=e73]:
+          - article [ref=e74]:
+            - generic [ref=e76]:
+              - generic [ref=e79]: Identified
+              - generic [ref=e80]:
+                - generic [ref=e81]:
+                  - heading "Crunchy Peanut Butter" [level=2] [ref=e82]
+                  - paragraph [ref=e83]: Pip & Nut
+                - generic [ref=e84]: Food Spread
+              - paragraph [ref=e85]: This is a jar of Pip & Nut's crunchy peanut butter, characterized by its 'Natural Nuttiness' and commitment to being palm oil-free. It's a natural spread that may exhibit oil separation.
+              - generic [ref=e86]:
+                - generic [ref=e87]:
+                  - term [ref=e88]: Material
+                  - definition [ref=e89]: Peanuts
+                - generic [ref=e90]:
+                  - term [ref=e91]: Style
+                  - definition [ref=e92]: Crunchy, Natural, No Palm Oil
+          - generic [ref=e93]:
+            - generic [ref=e94]:
+              - heading "Where to buy" [level=3] [ref=e95]
+              - generic [ref=e96]: 5 sources
+            - generic [ref=e97]:
+              - link "Peanut Butter | Natural, No Palm Oil | Pip & Nut pipandnut.com Peanut Butter | Natural, No Palm Oil | Pip & Nut See listing Buy" [ref=e99] [cursor=pointer]:
+                - /url: https://www.pipandnut.com/pages/bestsellers-google
+                - generic [ref=e100]:
+                  - img "Peanut Butter | Natural, No Palm Oil | Pip & Nut" [ref=e101]
+                  - generic [ref=e102]: pipandnut.com
+                - generic [ref=e103]:
+                  - heading "Peanut Butter | Natural, No Palm Oil | Pip & Nut" [level=4] [ref=e104]
+                  - paragraph [ref=e105]: See listing
+                  - generic [ref=e106]:
+                    - text: Buy
+                    - img [ref=e107]
+              - 'link "Amazon.com : PIP & NUT Crunchy Peanut Butter, 1 KG : Grocery & Gourmet Food amazon.com Amazon.com : PIP & NUT Crunchy Peanut Butter, 1 KG : Grocery & Gourmet Food See listing Buy" [ref=e110] [cursor=pointer]':
+                - /url: https://www.amazon.com/Pip-Nut-Crunchy-Peanut-Butter/dp/B07J69Y333
+                - generic [ref=e111]:
+                  - 'img "Amazon.com : PIP & NUT Crunchy Peanut Butter, 1 KG : Grocery & Gourmet Food" [ref=e112]'
+                  - generic [ref=e113]: amazon.com
+                - generic [ref=e114]:
+                  - 'heading "Amazon.com : PIP & NUT Crunchy Peanut Butter, 1 KG : Grocery & Gourmet Food" [level=4] [ref=e115]'
+                  - paragraph [ref=e116]: See listing
+                  - generic [ref=e117]:
+                    - text: Buy
+                    - img [ref=e118]
+              - 'link "Pip & Nut: FAQs pipandnut.com Pip & Nut: FAQs See listing Buy" [ref=e121] [cursor=pointer]':
+                - /url: https://www.pipandnut.com/pages/faqs
+                - generic [ref=e122]:
+                  - 'img "Pip & Nut: FAQs" [ref=e123]'
+                  - generic [ref=e124]: pipandnut.com
+                - generic [ref=e125]:
+                  - 'heading "Pip & Nut: FAQs" [level=4] [ref=e126]'
+                  - paragraph [ref=e127]: See listing
+                  - generic [ref=e128]:
+                    - text: Buy
+                    - img [ref=e129]
+              - link "Pip & Nut | Natural Nut Butters, Cups & Bars | Shop Online pipandnut.com Pip & Nut | Natural Nut Butters, Cups & Bars | Shop Online See listing Buy" [ref=e132] [cursor=pointer]:
+                - /url: https://www.pipandnut.com
+                - generic [ref=e133]:
+                  - img "Pip & Nut | Natural Nut Butters, Cups & Bars | Shop Online" [ref=e134]
+                  - generic [ref=e135]: pipandnut.com
+                - generic [ref=e136]:
+                  - heading "Pip & Nut | Natural Nut Butters, Cups & Bars | Shop Online" [level=4] [ref=e137]
+                  - paragraph [ref=e138]: See listing
+                  - generic [ref=e139]:
+                    - text: Buy
+                    - img [ref=e140]
+              - link "Pip & Nut Smooth Peanut Butter 1kg | British Online | British Essentials us.britishessentials.com Pip & Nut Smooth Peanut Butter 1kg | British Online | British Essentials See listing Buy" [ref=e143] [cursor=pointer]:
+                - /url: https://us.britishessentials.com/products/pip-nut-peanut-butter-1kg
+                - generic [ref=e144]:
+                  - img "Pip & Nut Smooth Peanut Butter 1kg | British Online | British Essentials" [ref=e145]
+                  - generic [ref=e146]: us.britishessentials.com
+                - generic [ref=e147]:
+                  - heading "Pip & Nut Smooth Peanut Butter 1kg | British Online | British Essentials" [level=4] [ref=e148]
+                  - paragraph [ref=e149]: See listing
+                  - generic [ref=e150]:
+                    - text: Buy
+                    - img [ref=e151]
+        - complementary [ref=e46]:
+          - generic [ref=e47]:
+            - heading "Recent searches" [level=2] [ref=e48]
+            - generic [ref=e153]: "2"
+          - list [ref=e154]:
+            - listitem [ref=e155]:
+              - button "Pink and White Checkered Ceramic Mug Unknown · Mugs 1h ago" [ref=e156]:
+                - generic [ref=e157]:
+                  - generic [ref=e158]: Pink and White Checkered Ceramic Mug
+                  - generic [ref=e159]: Unknown · Mugs
+                  - generic [ref=e160]: 1h ago
+            - listitem [ref=e161]:
+              - button "Crunchy Peanut Butter Pip & Nut · Food Spread 1h ago" [active] [ref=e162]:
+                - generic [ref=e163]:
+                  - generic [ref=e164]: Crunchy Peanut Butter
+                  - generic [ref=e165]: Pip & Nut · Food Spread
+                  - generic [ref=e166]: 1h ago
+    - contentinfo [ref=e51]:
+      - generic [ref=e52]:
+        - paragraph [ref=e53]: Lens — Product Discovery Engine
+        - paragraph [ref=e54]: Identification by Gemini Vision · Shopping by Tavily
+  - button "Open Next.js Dev Tools" [ref=e60] [cursor=pointer]:
+    - img [ref=e61]
+  - alert [ref=e167]

@@ -1,0 +1,23 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - banner [ref=e3]:
+      - generic [ref=e4]:
+        - img [ref=e6]
+        - generic [ref=e8]:
+          - heading "Product Discovery Engine" [level=1] [ref=e9]
+          - paragraph [ref=e10]: Upload a photo · Identify · Shop
+    - main [ref=e11]:
+      - generic [ref=e13]:
+        - generic [ref=e15] [cursor=pointer]:
+          - img [ref=e16]
+          - generic [ref=e18]:
+            - paragraph [ref=e19]: Drop a product photo here
+            - paragraph [ref=e20]: or click to browse your files
+          - paragraph [ref=e21]: PNG, JPG, WEBP supported
+        - button "Identify Product" [disabled] [ref=e22]
+      - complementary [ref=e24]:
+        - heading "Recent Searches" [level=2] [ref=e25]
+        - paragraph [ref=e26]: No searches yet.
+  - button "Open Next.js Dev Tools" [ref=e32] [cursor=pointer]:
+    - img [ref=e33]
+  - alert [ref=e36]

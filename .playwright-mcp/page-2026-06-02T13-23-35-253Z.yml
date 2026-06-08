@@ -1,0 +1,61 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - banner [ref=e3]:
+      - button "Lens — start a new search" [ref=e5]:
+        - img [ref=e7]
+        - generic [ref=e9]: Lens
+    - main [ref=e10]:
+      - generic [ref=e11]:
+        - generic [ref=e168]: Visual shopping, powered by AI
+        - heading "Find where to buy anything you can photograph." [level=1] [ref=e170]:
+          - text: Find where to buy
+          - text: anything you can photograph.
+        - paragraph [ref=e171]: Drop in a product photo. We identify the item and surface real places to buy it — with prices and links.
+        - button "Drop a product photo or click to browse — PNG, JPG or WEBP" [ref=e173]:
+          - img [ref=e175]
+          - generic [ref=e177]:
+            - generic [ref=e178]: Drop a product photo
+            - generic [ref=e179]: or click to browse — PNG, JPG or WEBP
+      - generic [ref=e25]:
+        - generic [ref=e180]:
+          - heading "How it works" [level=3] [ref=e181]
+          - list [ref=e182]:
+            - listitem [ref=e183]:
+              - generic [ref=e184]: "1"
+              - generic [ref=e185]:
+                - paragraph [ref=e186]: Upload a photo
+                - paragraph [ref=e187]: Drag in or snap a picture of any product you want to find.
+            - listitem [ref=e188]:
+              - generic [ref=e189]: "2"
+              - generic [ref=e190]:
+                - paragraph [ref=e191]: We identify it
+                - paragraph [ref=e192]: Gemini Vision reads the brand, category, material and style.
+            - listitem [ref=e193]:
+              - generic [ref=e194]: "3"
+              - generic [ref=e195]:
+                - paragraph [ref=e196]: Shop the results
+                - paragraph [ref=e197]: Get real purchase links with prices, from across the web.
+        - complementary [ref=e46]:
+          - generic [ref=e47]:
+            - heading "Recent searches" [level=2] [ref=e48]
+            - generic [ref=e153]: "2"
+          - list [ref=e154]:
+            - listitem [ref=e155]:
+              - button "Pink and White Checkered Ceramic Mug Unknown · Mugs 1h ago" [ref=e156]:
+                - generic [ref=e157]:
+                  - generic [ref=e158]: Pink and White Checkered Ceramic Mug
+                  - generic [ref=e159]: Unknown · Mugs
+                  - generic [ref=e160]: 1h ago
+            - listitem [ref=e161]:
+              - button "Crunchy Peanut Butter Pip & Nut · Food Spread 1h ago" [ref=e162]:
+                - generic [ref=e163]:
+                  - generic [ref=e164]: Crunchy Peanut Butter
+                  - generic [ref=e165]: Pip & Nut · Food Spread
+                  - generic [ref=e166]: 1h ago
+    - contentinfo [ref=e51]:
+      - generic [ref=e52]:
+        - paragraph [ref=e53]: Lens — Product Discovery Engine
+        - paragraph [ref=e54]: Identification by Gemini Vision · Shopping by Tavily
+  - button "Open Next.js Dev Tools" [ref=e60] [cursor=pointer]:
+    - img [ref=e61]
+  - alert [ref=e167]

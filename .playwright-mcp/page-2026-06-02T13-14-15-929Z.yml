@@ -1,0 +1,65 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - banner [ref=e3]:
+      - generic [ref=e4]:
+        - button "Lens — start a new search" [ref=e5]:
+          - img [ref=e7]
+          - generic [ref=e9]: Lens
+        - button "New search" [ref=e64]:
+          - img [ref=e65]
+          - text: New search
+    - main [ref=e10]:
+      - generic [ref=e11]:
+        - generic [ref=e12]: Visual shopping, powered by AI
+        - heading "Find where to buy anything you can photograph." [level=1] [ref=e14]:
+          - text: Find where to buy
+          - text: anything you can photograph.
+        - paragraph [ref=e15]: Drop in a product photo. We identify the item and surface real places to buy it — with prices and links.
+        - generic [ref=e16]:
+          - generic [ref=e67]:
+            - img "Selected product" [ref=e69]
+            - generic [ref=e70]:
+              - paragraph [ref=e71]: Ready to identify
+              - generic [ref=e72]:
+                - button "Replace" [ref=e73]
+                - button "Remove" [ref=e74]
+          - button "Identify product" [ref=e75]:
+            - text: Identify product
+            - img [ref=e76]
+      - generic [ref=e25]:
+        - generic [ref=e27]:
+          - heading "How it works" [level=3] [ref=e28]
+          - list [ref=e29]:
+            - listitem [ref=e30]:
+              - generic [ref=e31]: "1"
+              - generic [ref=e32]:
+                - paragraph [ref=e33]: Upload a photo
+                - paragraph [ref=e34]: Drag in or snap a picture of any product you want to find.
+            - listitem [ref=e35]:
+              - generic [ref=e36]: "2"
+              - generic [ref=e37]:
+                - paragraph [ref=e38]: We identify it
+                - paragraph [ref=e39]: Gemini Vision reads the brand, category, material and style.
+            - listitem [ref=e40]:
+              - generic [ref=e41]: "3"
+              - generic [ref=e42]:
+                - paragraph [ref=e43]: Shop the results
+                - paragraph [ref=e44]: Get real purchase links with prices, from across the web.
+        - complementary [ref=e46]:
+          - generic [ref=e47]:
+            - heading "Recent searches" [level=2] [ref=e48]
+            - generic [ref=e78]: "1"
+          - list [ref=e79]:
+            - listitem [ref=e80]:
+              - button "Crunchy Peanut Butter Pip & Nut · Food Spread 1h ago" [ref=e81]:
+                - generic [ref=e82]:
+                  - generic [ref=e83]: Crunchy Peanut Butter
+                  - generic [ref=e84]: Pip & Nut · Food Spread
+                  - generic [ref=e85]: 1h ago
+    - contentinfo [ref=e51]:
+      - generic [ref=e52]:
+        - paragraph [ref=e53]: Lens — Product Discovery Engine
+        - paragraph [ref=e54]: Identification by Gemini Vision · Shopping by Tavily
+  - button "Open Next.js Dev Tools" [ref=e60] [cursor=pointer]:
+    - img [ref=e61]
+  - alert [ref=e86]
