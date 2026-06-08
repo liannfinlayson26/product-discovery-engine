@@ -11,7 +11,7 @@ export async function GET(
     return NextResponse.json({ error: "Invalid id" }, { status: 400 });
   }
 
-  const found = getSearch(numId);
+  const found = await getSearch(numId);
   if (!found) {
     return NextResponse.json({ error: "Search not found" }, { status: 404 });
   }

@@ -3,7 +3,7 @@ import { listSearches, insertSearch } from "@/lib/db";
 import type { Identification, ProductResult } from "@/lib/types";
 
 export async function GET() {
-  const records = listSearches(20);
+  const records = await listSearches(20);
   return NextResponse.json(records);
 }
 
@@ -28,7 +28,7 @@ export async function POST(req: NextRequest) {
   }
 
   try {
-    const id = insertSearch({
+    const id = await insertSearch({
       thumbData,
       productName: identification.productName,
       brand: identification.brand,

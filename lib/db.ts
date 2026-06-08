@@ -1,87 +1,96 @@
-import Database from "better-sqlite3";
-import path from "path";
+import { createClient, type Client } from "@libsql/client";
 import type { SearchRecord, ApiIdentifyResponse } from "./types";
 
-const DB_PATH = path.join(process.cwd(), "searches.db");
+// Persistence backend:
+//   • Production (Vercel): set TURSO_DATABASE_URL (libsql://…) + TURSO_AUTH_TOKEN.
+//   • Local dev: falls back to a local SQLite file (file:searches.db).
+// History degrades gracefully — if the database can't be reached, reads return
+// empty and writes no-op instead of throwing (the core identify/search flow is
+// unaffected).
+let _client: Client | null = null;
+let _initPromise: Promise<Client | null> | null = null;
+let _unavailable = false;
 
-let _db: Database.Database | null = null;
-// Once SQLite proves unavailable (e.g. a read-only serverless filesystem on
-// Vercel), stop retrying and let history degrade gracefully instead of erroring.
-let _dbUnavailable = false;
-
-function getDb(): Database.Database | null {
-  if (_db) return _db;
-  if (_dbUnavailable) return null;
-  try {
-    _db = new Database(DB_PATH);
-    _db.exec(`
-      CREATE TABLE IF NOT EXISTS searches (
-        id           INTEGER PRIMARY KEY AUTOINCREMENT,
-        created_at   DATETIME DEFAULT CURRENT_TIMESTAMP,
-        thumb_data   TEXT,
-        product_name TEXT,
-        brand        TEXT,
-        category     TEXT,
-        results_json TEXT
-      )
-    `);
-    return _db;
-  } catch (err) {
-    _dbUnavailable = true;
-    console.warn(
-      `[db] SQLite unavailable, history disabled: ${String(err)}`
-    );
-    return null;
-  }
+function makeClient(): Client {
+  const url = process.env.TURSO_DATABASE_URL || "file:searches.db";
+  const authToken = process.env.TURSO_AUTH_TOKEN;
+  return createClient(authToken ? { url, authToken } : { url });
 }
 
-export function insertSearch(params: {
+async function getClient(): Promise<Client | null> {
+  if (_client) return _client;
+  if (_unavailable) return null;
+  if (!_initPromise) {
+    _initPromise = (async () => {
+      try {
+        const client = makeClient();
+        await client.execute(`
+          CREATE TABLE IF NOT EXISTS searches (
+            id           INTEGER PRIMARY KEY AUTOINCREMENT,
+            created_at   DATETIME DEFAULT CURRENT_TIMESTAMP,
+            thumb_data   TEXT,
+            product_name TEXT,
+            brand        TEXT,
+            category     TEXT,
+            results_json TEXT
+          )
+        `);
+        _client = client;
+        return client;
+      } catch (err) {
+        _unavailable = true;
+        console.warn(`[db] libSQL unavailable, history disabled: ${String(err)}`);
+        return null;
+      }
+    })();
+  }
+  return _initPromise;
+}
+
+export async function insertSearch(params: {
   thumbData?: string;
   productName: string;
   brand: string;
   category: string;
   resultsJson: string;
-}): number {
-  const db = getDb();
-  if (!db) return -1;
+}): Promise<number> {
+  const client = await getClient();
+  if (!client) return -1;
   try {
-    const stmt = db.prepare(`
-      INSERT INTO searches (thumb_data, product_name, brand, category, results_json)
-      VALUES (@thumbData, @productName, @brand, @category, @resultsJson)
-    `);
-    const result = stmt.run(params);
-    return result.lastInsertRowid as number;
+    const result = await client.execute({
+      sql: `INSERT INTO searches (thumb_data, product_name, brand, category, results_json)
+            VALUES (?, ?, ?, ?, ?)`,
+      args: [
+        params.thumbData ?? null,
+        params.productName,
+        params.brand,
+        params.category,
+        params.resultsJson,
+      ],
+    });
+    return result.lastInsertRowid != null ? Number(result.lastInsertRowid) : -1;
   } catch (err) {
     console.warn(`[db] insertSearch failed: ${String(err)}`);
     return -1;
   }
 }
 
-export function listSearches(limit = 20): SearchRecord[] {
-  const db = getDb();
-  if (!db) return [];
+export async function listSearches(limit = 20): Promise<SearchRecord[]> {
+  const client = await getClient();
+  if (!client) return [];
   try {
-    const rows = db
-      .prepare(
-        `SELECT id, created_at, thumb_data, product_name, brand, category
-         FROM searches ORDER BY created_at DESC LIMIT ?`
-      )
-      .all(limit) as Array<{
-      id: number;
-      created_at: string;
-      thumb_data: string | null;
-      product_name: string;
-      brand: string;
-      category: string;
-    }>;
-
-    return rows.map((r) => ({
-      id: r.id,
-      createdAt: r.created_at,
-      thumbData: r.thumb_data ?? undefined,
-      productName: r.product_name,
-      brand: r.brand,
-      category: r.category,
+    const rs = await client.execute({
+      sql: `SELECT id, created_at, thumb_data, product_name, brand, category
+            FROM searches ORDER BY created_at DESC, id DESC LIMIT ?`,
+      args: [limit],
+    });
+    return rs.rows.map((r) => ({
+      id: Number(r.id),
+      createdAt: String(r.created_at),
+      thumbData: r.thumb_data == null ? undefined : String(r.thumb_data),
+      productName: String(r.product_name),
+      brand: String(r.brand),
+      category: String(r.category),
     }));
   } catch (err) {
     console.warn(`[db] listSearches failed: ${String(err)}`);
@@ -89,24 +98,23 @@ export function listSearches(limit = 20): SearchRecord[] {
   }
 }
 
-export function getSearch(
+export async function getSearch(
   id: number
-): (ApiIdentifyResponse & { id: number; thumbData?: string }) | null {
-  const db = getDb();
-  if (!db) return null;
+): Promise<(ApiIdentifyResponse & { id: number; thumbData?: string }) | null> {
+  const client = await getClient();
+  if (!client) return null;
   try {
-    const row = db
-      .prepare(`SELECT id, thumb_data, results_json FROM searches WHERE id = ?`)
-      .get(id) as
-      | { id: number; thumb_data: string | null; results_json: string | null }
-      | undefined;
+    const rs = await client.execute({
+      sql: `SELECT id, thumb_data, results_json FROM searches WHERE id = ?`,
+      args: [id],
+    });
+    const row = rs.rows[0];
+    if (!row || row.results_json == null) return null;
 
-    if (!row || !row.results_json) return null;
-
-    const data = JSON.parse(row.results_json) as ApiIdentifyResponse;
+    const data = JSON.parse(String(row.results_json)) as ApiIdentifyResponse;
     return {
-      id: row.id,
-      thumbData: row.thumb_data ?? undefined,
+      id: Number(row.id),
+      thumbData: row.thumb_data == null ? undefined : String(row.thumb_data),
       identification: data.identification,
       products: data.products,
     };

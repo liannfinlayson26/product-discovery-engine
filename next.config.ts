@@ -1,9 +1,9 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  // better-sqlite3 is a native module: keep it external so Next doesn't bundle
-  // the .node binary (which would break loading it on serverless).
-  serverExternalPackages: ["better-sqlite3"],
+  // Keep the libSQL client (and its native deps) external so Next doesn't try to
+  // bundle them into the serverless functions.
+  serverExternalPackages: ["@libsql/client", "libsql"],
 };
 
 export default nextConfig;
